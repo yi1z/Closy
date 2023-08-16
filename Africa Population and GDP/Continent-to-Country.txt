@@ -1,0 +1,5 @@
+East Africa has the following countries:Uganda, Burundi, Djibouti, Zambia, Zimbabwe, Kenya, Union of the Comors, Mauritius, Madagascar, Mayotte, Malawi, Mozambique, Reunion, Rwanda, Seyshelles, Somalia, Tanzania, Eritrea, Ethiopia, South Sudan, 
+North Africa has the following countries:Sudan, Algeria, Egypt, SADR, Libya, Morocco, Tunisia, 
+South Africa has the following countries:Botswana, Lesotho, Namibia, Eswatini, South Africa, 
+Central Africa has the following countries:Angola, Gabon, Cameroon, Democratic Republic of the Congo, Republic of the Congo, Sao Tome and Principe, Central African Republic, Chad, Equatorial Guinea, 
+West Africa has the following countries:Benin, Burkina Faso, Gambia, Ghana, Guinea, Guinea-Bissau, Cape Verde, Ivory Coast, Liberia, Mauritania, Mali, Niger, Nigeria, Saint Helena, Ascension and Tristan da Cunha, Senegal, Sierra Leone, Togo, 

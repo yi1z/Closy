@@ -93,6 +93,35 @@ def readCountryPopulation(rows):
     return country_year_population
 
 
+def readCountryGDP(rows):
+    # read the country-and-year-GDP pair
+    country_year_gdp = {}
+    for row in rows:
+        if row[country_i] not in country_year_gdp:
+            country_year_gdp[row[country_i]] = {}
+        if row[year_i] not in country_year_gdp[row[country_i]]:
+            country_year_gdp[row[country_i]][row[year_i]] = row[gdp_i]
+    # write the country-and-year-GDP pair to a txt file
+    file = open('Country-to-Year-GDP.txt', 'w')
+    for country in country_year_gdp:
+        file.write("The GDP for " + country + " changes as the following: ")
+        for year in country_year_gdp[country]:
+            file.write(year + ': ' + country_year_gdp[country][year] + '; ')
+        file.write('\n')
+    file.close()
+    # write the country-and-year-GDP pair to a csv file
+    file = open('Country-to-Year-GDP.csv', 'w', newline="")
+    writer = csv.writer(file, delimiter=',')
+    writer.writerow(['question', 'answer'])
+    for country in country_year_gdp:
+        year_gdp = ''
+        for year in country_year_gdp[country]:
+            year_gdp += "In year " + year + ", the GDP is " + country_year_gdp[country][year] + '; '
+        writer.writerow(["How is the GDP chaning in " + country + "?", year_gdp])
+    file.close()
+    return country_year_gdp
+
+
 def main():
     rows = readfile('Data_Africa.csv')
 
@@ -107,6 +136,9 @@ def main():
 
     # read the country-and-year-population pair
     country_year_population = readCountryPopulation(rows)
+
+    # read the country-and-year-GDP pair
+    country_year_gdp = readCountryGDP(rows)
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,7 @@
+common
+gcc
+paddle
+paddlepaddle
+pytest-runner
+paddlespeech
+numpy==1.22.0

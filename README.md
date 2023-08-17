@@ -4,7 +4,7 @@ This project is intended to create an AI bot that combines speech-to-text, GPT, 
 
 ## References
 
-Speech-to-Text: [PaddleSpeech]([https://github.com/mozilla/DeepSpeech](https://github.com/PaddlePaddle/PaddleSpeech))
+Speech-to-Text: [PaddleSpeech](https://github.com/PaddlePaddle/PaddleSpeech)
 
 FastGPT: [FastGpt](https://github.com/labring/FastGPT)
 

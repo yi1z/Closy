@@ -6,7 +6,7 @@ This project is intended to create an AI bot that combines speech-to-text, GPT, 
     <img src="Closy Model.png" alt="Closy Model">
 </div>
 
-![]("Closy Model.png")
+![](Closy Model.png)
 
 ## References
 

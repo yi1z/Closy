@@ -4,8 +4,8 @@ import time
 
 
 # some gpt api that can be used
-# https://fastgpt.run/api/openapi/v1/chat/completions
-# https://chat.wantongyun.cn/api/openapi/v1/chat/completions
+url1 = "https://fastgpt.run/api/openapi/v1/chat/completions"
+url2 = "https://chat.wantongyun.cn/api/openapi/v1/chat/completions"
 
 
 # check/use proxy
@@ -24,7 +24,7 @@ def check_proxy(proxy_address: str = None, is_use: bool = False,
 # send the text to fastgpt api
 def give_to_gpt(url: str, apikey: str, app_id: str, chat_id: str, 
                 is_stream: bool = False, is_detail: bool = False,
-                prompt: str = None, content: str = None,
+                prompt: str = "", content: str = "",
                 model: str = "gpt-3.5-turbo", 
                 proxy_address: str = None, is_use: bool = False):
     # make up user messages
@@ -35,17 +35,18 @@ def give_to_gpt(url: str, apikey: str, app_id: str, chat_id: str,
     # create headers for api access
     headers = {
         "Authorization": f"Bearer {apikey}-{app_id}",
-        'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
-        'Content-Type': 'application/json'
+        'content-type': 'application/json'
     }
     # make up data
     data = {
-        "chatID": chat_id,
         "messages": messages,
         "temperature": 0.3,
         "max_tokens": 2000,
         "user": "live-virtual-digital-person",
         "model": model,
+        "stream": is_stream,
+        "detail": is_detail,
+        "chatID": chat_id
     }
 
     # open session
@@ -57,45 +58,65 @@ def give_to_gpt(url: str, apikey: str, app_id: str, chat_id: str,
 
     # set up time counter
     start_time = time.time()
+    resutl = ""
 
     try:
-        response = requests.post(url=url, headers=headers, json=data)
+        response = requests.post(url=url, headers=headers, json=data, verify=False)
         # check if the response is valid
         response.raise_for_status()
-        return eval(response.text)["replies"][0]["content"]
+        # evaluate the response to a dictionary
+        result = eval(response.text)
+        # get the response content
+        result_content = result["choices"][0]["message"]["content"]
     except requests.exceptions.HTTPError as err:
         print(f"GPT API Error: {err}")
-        return "GPT出现错误，请稍后再试。"
+        result = "GPT出现错误，请稍后再试。"
+
+    print(f"Time used: {time.time() - start_time}")
+    return result
+
+
+# test
+def test(url, data):
+    result = give_to_gpt(url, data["apikey"], data["appID"], data["chatID"], 
+                         content=data["content"])
+    print(result)
 
 
 # send the text to fastgpt api
-@DeprecationWarning
-def send_to_gpt(text: str, apikey: str, appID: str, 
-                    chatID: str, is_stream: bool = False, is_detail: bool = False,
-                    messages: Dict[str, str] = None):
-    url = "https://fastgpt.run/api/openapi/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {apikey}-{appID}",
-        'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
-        'Content-Type': 'application/json'
-    }
-    data = {
-        "chatID": chatID,
-        "is_stream": is_stream,
-        "is_detail": is_detail,
-        "messages": [messages],
-    }
-    response = requests.post(url=url, headers=headers, json=data)
-    return response
+# @DeprecationWarning
+# def send_to_gpt(text: str, apikey: str, appID: str, 
+#                     chatID: str, is_stream: bool = False, is_detail: bool = False,
+#                     messages: Dict[str, str] = None):
+#     url = "https://fastgpt.run/api/openapi/v1/chat/completions"
+#     headers = {
+#         "Authorization": f"Bearer {apikey}-{appID}",
+#         'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
+#         'Content-Type': 'application/json'
+#     }
+#     data = {
+#         "chatID": chatID,
+#         "is_stream": is_stream,
+#         "is_detail": is_detail,
+#         "messages": [messages],
+#     }
+#     response = requests.post(url=url, headers=headers, json=data)
+#     return response
 
 
 if __name__ == '__main__':
-    apikey = "fastgpt-zdtpvsanm1qa5d0mkfwisuvd"
-    appID = "64dc85c6afb25886d191fd43"
-    chatID = "1"
-    messages = {
-        "content": "尼日利亚2017到2018年的GDP增长率是多少",
-        "role": "user"
+    data1 = {
+        "apikey": "fastgpt-zdtpvsanm1qa5d0mkfwisuvd",
+        "appID": "64dc85c6afb25886d191fd43",
+        "chatID": "1",
+        "content": "尼日利亚2017到2018年的GDP增长率是多少"
     }
-    print(give_to_gpt("尼日利亚2017到2018年的GDP增长率是多少", apikey, appID, chatID, False, False, messages))
+    data2 = {
+        "apikey": "fastgpt-70aq3o62rpe92tk7glkbw0r6",
+        "appID": "64de266f44b9f7a967f84be9",
+        "chatID": "1",
+        "content": "你是谁？"
+    }
+
+    test(url2, data2)
 

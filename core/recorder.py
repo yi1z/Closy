@@ -3,6 +3,7 @@ import wave
 from tqdm import tqdm
 import time
 import math, struct
+from threading import Thread
 
 SHORT_NORMALIZE = (1.0/32768.0)
 swidth = 2
@@ -122,3 +123,19 @@ class Recorder:
         self.is_running = False
         print("录音进程已关闭。")
 
+
+if __name__ == "__main__":
+    # short test
+
+    # metadata for the recorder
+    metadata = {
+        "output_path": "output.wav",
+        "threshold": 1000
+    }
+
+    # create a recorder
+    recorder = Recorder(metadata)
+    # start the recorder
+    recorder.listen()
+    # close the recorder
+    recorder.close()

@@ -116,3 +116,9 @@ class Recorder:
         self.is_processing = False
         print("处理结束。")
 
+    def close(self):
+        self.stream.close()
+        self.p.terminate()
+        self.is_running = False
+        print("录音进程已关闭。")
+

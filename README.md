@@ -2,6 +2,10 @@
 
 This project is intended to create an AI bot that combines speech-to-text, GPT, and text-to-speech, so that it allows the user to make direct verbal communication with GPT
 
+<div align="center">
+    <img src="Closy Model.png" alt="Fay">
+</div>
+
 ## References
 
 Speech-to-Text: [PaddleSpeech](https://github.com/PaddlePaddle/PaddleSpeech)

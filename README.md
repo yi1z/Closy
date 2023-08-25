@@ -14,6 +14,6 @@ This project is intended to create an AI bot that combines speech-to-text, GPT, 
 
 Speech-to-Text: [PaddleSpeech](https://github.com/PaddlePaddle/PaddleSpeech)
 
-FastGPT: [FastGpt](https://github.com/labring/FastGPT)
+GPT: [FastGpt](https://github.com/labring/FastGPT)
 
 Text-to-Speech: [so-vits](https://github.com/svc-develop-team/so-vits-svc)

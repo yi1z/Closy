@@ -83,7 +83,6 @@ def test(url, data):
     print(result)
 
 
-# send the text to fastgpt api
 # @DeprecationWarning
 # def send_to_gpt(text: str, apikey: str, appID: str, 
 #                     chatID: str, is_stream: bool = False, is_detail: bool = False,

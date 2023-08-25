@@ -2,7 +2,7 @@
 
 This project is intended to create an AI bot that combines speech-to-text, GPT, text-to-speech, and model control.
 
-<div align="center">
+<div>
     <img src="Closy Model.png" alt="Closy Model">
 </div>
 

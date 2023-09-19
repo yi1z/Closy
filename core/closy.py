@@ -3,6 +3,7 @@ from __future__ import annotations
 from recorder import Recorder
 import emotion
 from configs import closy_config_handler as cch
+import speech_to_text as stt
 
 
 # The virtual assistant
@@ -16,7 +17,7 @@ class Closy:
         self.is_listening = True
         self.is_speaking = False
 
-        self.recorder = Recorder()
+        self.recorder = Recorder(self)
         
         # the current model state of the virtual assistant
         self.curr_emotion = cch.closy_wake_emotion
@@ -52,12 +53,26 @@ class Closy:
     def rest(self):
         self.is_running = False
 
+    # Listen to the user's speech and record it to a temp file
     def listen(self):
-        pass
+        self.is_listening = True
+        # initialize the recorder
+        recorder = Recorder()
+        # start the recorder
+        recorder.start()
+        self.is_listening = False
 
+    # Transfer the heared speech to text
+    def transfer(self):
+        # convert speech to text
+        text = stt.speech_to_text("temp_audio.wav")
+        return text
+
+    # Make a response based on given text, and previous metadata
     def make_response(self):
         pass
 
+    # Change Closy's emotion based on the text
     def change_emotion(self, text):
         # analysis the emotion of the text
         emo_score = emotion.get_emo(text)

@@ -21,6 +21,9 @@ emo_to_mov = dv
 wake_talk_rate = dv
 emo_to_talk_rate = dv
 
+user_speech_path = dv
+hearing_threshold = dv
+
 def load_config():
     global closy_model
     global closy_voice
@@ -36,6 +39,9 @@ def load_config():
 
     global closy_wake_talk_rate 
     global closy_emo_to_talk_rate
+
+    global closy_user_speech_path
+    global closy_hearing_threshold
 
     config = ConfigParser()
     config.read('closy.conf', encoding='utf-8')
@@ -54,6 +60,9 @@ def load_config():
 
     closy_wake_talk_rate = config.get('Closy', 'wake_talk_rate')
     closy_emo_to_talk_rate = config.get('Closy', 'emo_to_talk_rate')
+
+    closy_user_speech_path = config.get('Closy', 'user_speech_path')
+    closy_hearing_threshold = config.get('Closy', 'hearing_threshold')
 
     config_file = json.load(codecs.open('closy.json', 'r', 'utf-8-sig'))
 

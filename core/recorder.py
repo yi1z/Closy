@@ -4,6 +4,7 @@ from tqdm import tqdm
 import time
 import math, struct
 from threading import Thread
+from configs import closy_config_handler as cch
 
 SHORT_NORMALIZE = (1.0/32768.0)
 swidth = 2
@@ -27,7 +28,7 @@ class Recorder:
 
         return rms * 1000
     
-    def __init__(self, metadata, closy):
+    def __init__(self, closy):
         # whether the recorder is running
         self.is_running = True
         # whether the recorder is recording
@@ -35,8 +36,9 @@ class Recorder:
         # whether the recorder is processing the recorded speech
         self.is_processing = False
         
-        self.output_path = metadata["output_path"]
-        self.threshold = metadata["threshold"]
+        # get the metadata from the config
+        self.output_path = cch.closy_user_speech_path
+        self.threshold = cch.closy_hearing_threshold
 
         self.closy = closy
 

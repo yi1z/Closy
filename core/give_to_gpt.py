@@ -2,6 +2,7 @@ import requests
 from typing import Dict
 import time
 
+# finished
 
 # some gpt api that can be used
 url1 = "https://fastgpt.run/api/openapi/v1/chat/completions"
@@ -19,6 +20,9 @@ def check_proxy(proxy_address: str = None, is_use: bool = False,
                 "http": "https://" + proxy_address,
                 "https": "http://" + proxy_address
             }
+
+
+def previous_metadata_input()
 
 
 # send the text to fastgpt api

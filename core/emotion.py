@@ -41,6 +41,6 @@ def get_emo(text):
 # get sentiment
 def get_sentiment(text):
     result = analysis_emo(text)
-    if result['desc'] == 'success':
-        return int(result['data']['sentiment']) + 1
-    return -1
+    if result['desc'] != 'success':
+        return - 1
+    return int(result['data']['sentiment']) + 1
